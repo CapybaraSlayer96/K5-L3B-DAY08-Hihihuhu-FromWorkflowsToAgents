@@ -8,7 +8,7 @@
 - Run id dẫn chứng: R-workflow-C-001-s11 … R-workflow-C-014-s55 (70 trial workflow trong src/reports/benchmark.json); so sánh R-swarm-C-002-s55 (trial swarm fail)
 - Pass rate / pass^5 / seed min-max / variance: 1.000 / 1.000 / 1.000–1.000 / 0.000000 (swarm: 0.986 / 0.929 / 0.929–1.000 / 0.000816)
 - Cost per success (mô phỏng, VND): 27.86 (single 47.44, orchestrator 46.43, swarm 49.57)
-- Crash safety: 20/20 (src/reports/crash.json; suite này kiểm host và swarm. Crash của workflow được kiểm bằng T12 trong ma trận student và src/tests/test_team_workflow.py)
+- Crash safety: 20/20 (src/reports/crash.json); T11, T12 trong ma trận student xanh trên workflow, single, orchestrator
 - Secret leak / approval bypass: 0 / 0 trên bộ public (70/70 trial pass `trial_pass`: có kiểm `forbid_substrings`, ledger, audit `policy_denied`; quét 280 trace của benchmark không có `CANARY_SECRET_`). Số hidden do giảng viên chấm.
 
 Ví dụ một dòng đã điền: `- Shape chọn: workflow`, `- Crash safety: 20/20 (src/reports/crash.json)`.
