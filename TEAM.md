@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Đoàn Xuân Duy Bảo | 2A202603858 | doanxuanduybao96@gmail.com | CapybaraSlayer96 | Lead: integration, benchmark, ADR, báo cáo nhóm |
+|   1 | Đoàn Xuân Duy Bảo | 2A202603858 | doanxuanduybao96@gmail.com | CapybaraSlayer96 | Lead: integration, benchmark, ADR, báo cáo nhóm, bonus B3 |
 |   2 | Nguyễn Đình Vũ Hải | 2A202603820 | nguyendinhvuhai1234@gmail.com | HaiVuuu | Shape A workflow |
 |   3 | Vũ Tiến Hùng | 2A202603882 | hungvu.education@gmail.com | hungvueducation-hash | Shape B single agent |
 |   4 | Nguyễn Đình Minh | 2A202603867 | nguyenminh25112k4@gmail.com | minhh25 | Shape C orchestrator + handoff |
@@ -28,7 +28,7 @@ Gợi ý chia vai:
 
 | Người | Vai | Commit | Test đã thêm hoặc sửa |
 | --- | --- | --- | --- |
-| Đoàn Xuân Duy Bảo (CapybaraSlayer96) | Lead: integration, benchmark, ADR, báo cáo nhóm | `8b91d14` | `src/tests/test_team_integration.py` |
+| Đoàn Xuân Duy Bảo (CapybaraSlayer96) | Lead: integration, benchmark, ADR, báo cáo nhóm, bonus B3 | `8b91d14` | `src/tests/test_team_integration.py`, `src/tests/test_bonus_swarm_verifier.py` |
 | Nguyễn Đình Vũ Hải (HaiVuuu) | Shape A workflow | `8734848` | `src/tests/test_team_workflow.py` |
 | Vũ Tiến Hùng (hungvueducation-hash) | Shape B single agent | `11fb369` | `src/tests/test_team_single.py` |
 | Nguyễn Đình Minh (minhh25) | Shape C orchestrator + handoff | `86a3197` | `src/tests/test_team_orchestrator.py` |

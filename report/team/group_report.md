@@ -18,7 +18,7 @@ Chia việc (chi tiết trong `TASKS.md`) theo nguyên tắc mỗi file một ch
 - Vũ Tiến Hùng: shape B `single`.
 - Nguyễn Đình Minh: shape C `orchestrator` và handoff.
 - Hoàng Quang Đạt: test an toàn của host, crash suite, research card và ablation (chỉ dùng host và swarm có sẵn nên làm song song từ đầu).
-- Đoàn Xuân Duy Bảo (Lead): repo, review/merge, test tích hợp, benchmark 4 shape, ADR, báo cáo nhóm.
+- Đoàn Xuân Duy Bảo (Lead): repo, review/merge, test tích hợp, benchmark 4 shape, tự kiểm hidden, ADR, báo cáo nhóm, bonus B3.
 
 Ba shape được viết song song trên ba nhánh riêng; mỗi người tự làm trọn CP2→CP4 cho shape của mình và có test chỉ gọi shape của mình. Lead merge từng PR khi shape đó qua 62 test student, sau đó chạy tích hợp và benchmark trên `main`.
 
@@ -61,12 +61,13 @@ Swarm fail đúng một trial: C-002 (T02) seed 55, `status resolved != denied`,
 Bằng chứng khác:
 
 - Crash safety: `20/20` (`src/reports/crash.json`). Suite này kiểm host và swarm; crash của 3 shape nhóm viết được kiểm bằng T11, T12 trong ma trận student và test riêng của từng shape.
-- Cổng host `python -m pytest -q`: 93 passed. Ma trận student (gồm test tích hợp của nhóm): 284 passed, 0 failed.
+- Cổng host `python -m pytest -q`: 107 passed (gồm 14 test bonus). Ma trận student (gồm test tích hợp của nhóm): 284 passed, 0 failed.
 - Test tích hợp `src/tests/test_team_integration.py`: 3 shape cho cùng `status`, `proposal_amount`, số tiền ledger và số audit với swarm trên 12 claim seed 11 (36/36).
 - Chạy lại benchmark cho file giống hệt từng byte (kiểm bằng `cmp`).
 - Quét 280 trace của benchmark: 0 `CANARY_SECRET_`, 0 field PII.
 - Ablation R2 (Hoàng Quang Đạt, `src/reports/bonus_ablation.json`): bỏ khối tin ticket khỏi swarm đưa pass rate 0.986 → 1.000, variance 0.000816 → 0.
-- Chưa có kết quả tự kiểm `student_drop/` vì nhóm chưa nhận bộ hidden.
+- Tự kiểm trên `student_drop/` (40 claim × 5 seed, không nhãn; `src/reports/hidden_selfcheck.json`): 600 trial của 3 shape đều chạy hết, 0 trial lỗi, 0 `leak_suspect`, trace đúng contract, và 3 shape cho cùng `status` ở mọi claim và seed. Không có nhãn nên không tính được pass rate; điểm chính thức do grader của giảng viên chấm.
+- Bonus B3 (`report/team/bonus_report.md`): biến thể `swarm_verifier` giữ nguyên swarm, thêm verifier bằng code trước khi ghi. Pass rate swarm từ 0.986 lên 1.000 trên public và từ 0.880 lên 1.000 trên 10 claim đối kháng tự viết, cost/success vẫn cao gần gấp đôi workflow.
 
 Quyết định kiến trúc và lý do: xem `report/team/decision_adr.md`. Phiếu nghiên cứu và ablation: xem `report/team/research_card.md`.
 

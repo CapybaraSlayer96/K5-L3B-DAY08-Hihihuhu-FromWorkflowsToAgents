@@ -5,7 +5,7 @@
 - Họ tên: Nguyễn Đình Minh
 - MSSV / mã học viên: 2A202603867
 - Email: nguyenminh25112k4@gmail.com
-- GitHub: minhh25 (email GitHub chính thức: nguyenminh25112k4@gmail.com; commit `86a3197`, `8ebe342` hiển thị email máy `minh25@minh25s-MacBook-Air.local` nhưng cùng là của tài khoản này)
+- GitHub: minhh25
 - Vai trò: Shape C — orchestrator + handoff.
 
 ## 2. Phần việc phụ trách

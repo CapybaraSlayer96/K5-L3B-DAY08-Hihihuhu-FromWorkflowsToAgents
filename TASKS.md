@@ -17,11 +17,11 @@
 
 | Người | GitHub | Vai | File sở hữu | Phụ thuộc ai |
 | --- | --- | --- | --- | --- |
-| Đoàn Xuân Duy Bảo (Lead) | CapybaraSlayer96 | Việc chung: repo, review/merge, tích hợp, benchmark 4 shape, ADR, báo cáo nhóm, nộp bài | `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json`, `src/tests/test_team_integration.py` | Phần tích hợp cuối buổi chạy sau khi merge |
+| Đoàn Xuân Duy Bảo (Lead) | CapybaraSlayer96 | Việc chung: repo, review/merge, tích hợp, benchmark 4 shape, ADR, báo cáo nhóm, bonus B3, nộp bài | `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json`, `src/tests/test_team_integration.py`, bonus B3: `src/bonus/swarm_verifier.py`, `src/bonus/b3_overrides.py`, `src/bonus/cases.jsonl`, `src/bonus/world.json`, `src/tests/test_bonus_swarm_verifier.py`, `src/reports/bonus_b3_*.json`, `report/team/bonus_report.md` | Phần tích hợp cuối buổi chạy sau khi merge |
 | Nguyễn Đình Vũ Hải | HaiVuuu | Shape A workflow, end-to-end | `src/lab8/shapes/workflow.py`, `src/tests/test_team_workflow.py` | Không |
 | Vũ Tiến Hùng | hungvueducation-hash | Shape B single agent, end-to-end | `src/lab8/shapes/single.py`, `src/tests/test_team_single.py` | Không |
 | Nguyễn Đình Minh | minhh25 | Shape C orchestrator + handoff, end-to-end | `src/lab8/shapes/orchestrator.py`, `src/tests/test_team_orchestrator.py` | Không |
-| Hoàng Quang Đạt | QDat18 | Safety của host + crash suite + research card/ablation | `src/tests/test_team_host_safety.py`, `src/reports/crash.json`, `report/team/research_card.md`, `src/bonus/` (biến thể cho ablation) | Không |
+| Hoàng Quang Đạt | QDat18 | Safety của host + crash suite + research card/ablation | `src/tests/test_team_host_safety.py`, `src/reports/crash.json`, `report/team/research_card.md`, `src/bonus/__init__.py`, `src/bonus/swarm_verified.py`, `src/reports/bonus_ablation.json` (biến thể cho ablation) | Không |
 
 "End-to-end" nghĩa là chủ shape tự làm đủ CP2, CP3, CP4 cho shape mình: logic, idempotency, crash, approval, secret, trace. Không chờ ai rà hộ.
 
@@ -60,9 +60,10 @@
 - [ ] Viết `report/team/group_report.md` (≤ 5 trang): mục 3 từ đoạn mô tả của Hai, Hưng, Minh; mục 4 từ `benchmark.json`, `crash.json`, research card; mục 5 gom khó khăn cả nhóm.
 - [ ] Điền "Bảng đóng góp" trong `TEAM.md` (mỗi người một dòng: commit + file test), giữ nguyên tiêu đề và cột.
 - [ ] Chạy `python -m lab8.check_submission` ra `0 FAIL`, đi hết checklist nộp ở cuối file, rồi push.
+- [ ] Bonus B3 ([docs/bonus_topics.md](docs/bonus_topics.md#b3--verifieraggregator-chống-khuếch-đại-lỗi)): viết `src/bonus/swarm_verifier.py` (giữ nguyên swarm, thêm verifier bằng code trước khi ghi, ghi `verifier_override` vào trace); thêm ≥ 8 claim đối kháng nhãn viết tay vào `src/bonus/cases.jsonl` + `src/bonus/world.json`; so swarm, swarm_verifier, workflow trên public và bộ tự viết; ≥ 2 test `src/tests/test_bonus_*.py`; viết `report/team/bonus_report.md` theo khung cuối [docs/bonus_topics.md](docs/bonus_topics.md). Không sửa `src/bonus/swarm_verified.py` của Đạt (ablation R2 phải tái lập được).
 - [ ] Nhắc cả nhóm nộp link repo trên LMS. Viết báo cáo cá nhân.
 
-**Deliver:** `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json` (nếu có `student_drop/`), `src/tests/test_team_integration.py`, `main` sạch với `check_submission` `0 FAIL`, báo cáo cá nhân.
+**Deliver:** `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json` (nếu có `student_drop/`), `src/tests/test_team_integration.py`, bonus B3 (code, test, `src/reports/bonus_b3_*.json`, `report/team/bonus_report.md`), `main` sạch với `check_submission` `0 FAIL`, báo cáo cá nhân.
 
 ---
 
@@ -163,7 +164,7 @@ Toàn bộ việc dưới đây chỉ dùng host và swarm có sẵn trong start
 
 ## Bonus (tùy chọn, chỉ làm khi bài chính xong)
 
-Bonus chỉ tính khi shape chọn qua 3 must-pass và hidden ≥ 0.80 ([docs/bonus_topics.md](docs/bonus_topics.md)). Đề xuất **B7 — Kiểm toán grader**: không đụng shape hay host, chỉ thêm `src/tests/test_bonus_grader_audit.py` và `report/team/bonus_report.md`, nên không conflict và không phụ thuộc ai. Người xong việc sớm nhất nhận, báo Lead trước khi làm.
+Bonus chỉ tính khi shape chọn qua 3 must-pass và hidden ≥ 0.80 ([docs/bonus_topics.md](docs/bonus_topics.md)). Nhóm làm **B3 — Verifier chống khuếch đại lỗi**, Lead phụ trách (xem checklist của Lead). B7 không dùng được vì `python -m lab8.check_submission` chỉ chấp nhận tiêu đề `Bonus report: B1`…`B6`.
 
 ## Checklist nộp bài (Lead chốt)
 
