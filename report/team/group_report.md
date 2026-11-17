@@ -54,11 +54,13 @@ Bộ public, 14 claim × 5 seed = 70 trial mỗi shape (`src/reports/benchmark.j
 | orchestrator | 1.000 | 1.000 | 1.000–1.000 | 0.000000 | 46.43 | 4.36 / 5 | 0 |
 | swarm | 0.986 | 0.929 | 0.929–1.000 | 0.000816 | 49.57 | 2.80 / 3 | 3.00 |
 
+Lưu ý về steps: metric đếm số event trong trace. Single gom cả vòng ReAct (khoảng 5 lần `decide`) vào một event `react`, nên 1.93 thấp hơn số bước thật; không dùng cột này để so độ phức tạp giữa các shape.
+
 Swarm fail đúng một trial: C-002 (T02) seed 55, `status resolved != denied`, do khối `REFERENCE_WEAKNESS` tin số ngày trễ trong ticket.
 
 Bằng chứng khác:
 
-- Crash safety: `20/20` (`src/reports/crash.json`).
+- Crash safety: `20/20` (`src/reports/crash.json`). Suite này kiểm host và swarm; crash của 3 shape nhóm viết được kiểm bằng T11, T12 trong ma trận student và test riêng của từng shape.
 - Cổng host `python -m pytest -q`: 93 passed. Ma trận student (gồm test tích hợp của nhóm): 284 passed, 0 failed.
 - Test tích hợp `src/tests/test_team_integration.py`: 3 shape cho cùng `status`, `proposal_amount`, số tiền ledger và số audit với swarm trên 12 claim seed 11 (36/36).
 - Chạy lại benchmark cho file giống hệt từng byte (kiểm bằng `cmp`).

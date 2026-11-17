@@ -5,7 +5,7 @@
 - Tên nhóm: Hihihuhu
 - Lớp: L3B
 - Repo nhóm: `K5-L3B-DAY08-Hihihuhu-FromWorkflowsToAgents`
-- URL repo, nhánh nộp, commit chốt: https://github.com/CapybaraSlayer96/K5-L3B-DAY08-Hihihuhu-FromWorkflowsToAgents, nhánh `main`, commit chốt: (Lead điền khi nộp)
+- URL repo, nhánh nộp, commit chốt: https://github.com/CapybaraSlayer96/K5-L3B-DAY08-Hihihuhu-FromWorkflowsToAgents, nhánh `main`, commit chốt: `80b4f40` (trùng `report/team/decision_adr.md`)
 
 ## Thành viên
 
