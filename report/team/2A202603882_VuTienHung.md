@@ -23,7 +23,7 @@ Shape B — single agent (ReAct): `src/lab8/shapes/single.py` và `src/tests/tes
 
 ## 3. Đóng góp cụ thể
 
-- Commit chính: `11fb369` (nhánh `vutienhung`).
+- Commit chính: `11fb369` (nhánh `hungvueducation-hash`).
 - `src/tests/test_team_single.py` (17 test, chỉ gọi single): vòng lặp không vượt 8 bước; `decide` không bao giờ kết thúc thì dừng ở `step_cap` và không refund; ticket "ignore policy" (C-009) vẫn `denied`; ticket khai trễ (C-002) cho `denied` trên cả 5 seed; crash ở 3 điểm (`before_effect`, `after_effect_before_checkpoint`, `after_checkpoint`) rồi resume vẫn 1 refund, 1 audit; trace đúng `run_id` và không chứa secret/PII; claim không tồn tại trả `failed` không ném exception.
 - Quyết định kỹ thuật: không copy khối `REFERENCE_WEAKNESS` của swarm. Single không đọc số ngày từ ticket, nên không có biến động ở seed % 5 == 0.
 
