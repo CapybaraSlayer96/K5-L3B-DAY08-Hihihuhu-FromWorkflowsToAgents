@@ -4,95 +4,92 @@
 
 ## Nguyên tắc chung (cả nhóm đọc trước)
 
-1. **Mỗi file chỉ có một chủ.** Chỉ sửa file trong cột "File sở hữu" của mình. Cần sửa file của người khác thì nhắn chủ file. Đây là cách duy nhất để không conflict.
-2. **Không ai sửa file thước đo:** `src/lab8/metrics.py`, `src/lab8/durability.py`, `src/lab8/policy.py`, `src/config/*`, `src/data/*`, `src/grader_audit/*`. Không sửa tay JSON trong `src/reports/`.
-3. **Mỗi người làm trên nhánh riêng** (tên nhánh = GitHub username), mở PR vào `main`, Lead review và merge. Không push thẳng `main`, không force-push.
-4. **Mỗi người phải có:** ít nhất một commit kỹ thuật có nội dung, ít nhất một **file test riêng** trong `src/tests/` (rubric C8), và một báo cáo cá nhân `report/team/MSSV_HoTen.md` (copy từ file mẫu, **không sửa file mẫu**).
-5. Trước khi mở PR, chạy trong `src/`: `python -m pytest -q` phải xanh (không có dòng `failed`).
-6. Ba shape A/B/C nằm ở ba file khác nhau nên ba người viết song song được ngay từ đầu.
-7. File chung (`TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`) chỉ Lead sửa. Thành viên gửi thông tin (MSSV, email, commit hash, tên test, số liệu, đoạn mô tả phần mình) cho Lead qua chat hoặc comment PR.
+1. **Làm song song, không chờ nhau.** Việc của 4 thành viên chỉ đụng tới shape của chính mình hoặc phần có sẵn trong starter (host, swarm). Không ai phải chờ code của người khác mới bắt đầu, viết test hay chạy test được. Chỉ phần tích hợp cuối buổi của Lead (benchmark 4 shape, ADR, báo cáo nhóm) chạy sau khi các PR đã merge.
+2. **Mỗi file chỉ có một chủ.** Chỉ sửa file trong cột "File sở hữu" của mình. Không ai sửa file shape của người khác.
+3. **Test của mỗi người chỉ chạy trên phần của người đó.** Test shape chỉ gọi shape của mình (`SHAPES["workflow"]`, ...), không parametrize sang shape khác. Nhờ vậy test của bạn xanh hay đỏ không phụ thuộc người khác.
+4. **Không ai sửa file thước đo:** `src/lab8/metrics.py`, `src/lab8/durability.py`, `src/lab8/policy.py`, `src/config/*`, `src/data/*`, `src/grader_audit/*`. Không sửa tay JSON trong `src/reports/`.
+5. **Mỗi người làm trên nhánh riêng** (tên nhánh = GitHub username), mở PR vào `main`, Lead review và merge. Không push thẳng `main`, không force-push.
+6. **Mỗi người phải có:** ít nhất một commit kỹ thuật có nội dung, ít nhất một **file test riêng** trong `src/tests/` (rubric C8), và một báo cáo cá nhân `report/team/<MSSV>_<HoTenKhongDau>.md` (copy từ `report/team/MSSV_HoTen.md`, **không sửa file mẫu**).
+7. Trước khi mở PR, chạy trong `src/`: `python -m pytest -q` phải xanh (không có dòng `failed`).
+8. File chung (`TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`) chỉ Lead sửa. Thành viên gửi thông tin (MSSV, email, commit hash, tên test, số liệu, đoạn mô tả phần mình) cho Lead qua chat hoặc comment PR.
 
 ## Tổng quan
 
-| Người | GitHub | Vai | File sở hữu | Rubric chính |
+| Người | GitHub | Vai | File sở hữu | Phụ thuộc ai |
 | --- | --- | --- | --- | --- |
-| doanxuanduybao (Lead) | doanxuanduybao | Việc chung: repo, review/merge, ADR, báo cáo nhóm, nộp bài | `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/tests/test_team_integration.py` | C6 (ADR), C7, C8 |
-| Nguyen Dinh Vu Hai | HaiVuuu | Shape A workflow + benchmark + test trace contract | `src/lab8/shapes/workflow.py`, `src/tests/test_team_workflow.py`, `src/tests/test_team_trace_contract.py`, `src/reports/benchmark.json` | C1, C3, C4, C6 |
-| HungVT01 | hungvueducation-hash | Shape B single + research card/ablation + tự kiểm hidden | `src/lab8/shapes/single.py`, `src/tests/test_team_single.py`, `report/team/research_card.md`, `src/reports/hidden_selfcheck.json` | C1, C3, C4, C6 |
-| Nguyen Dinh Minh | minhh25 | Shape C orchestrator + handoff + rà trace/PII | `src/lab8/shapes/orchestrator.py`, `src/tests/test_team_orchestrator.py`, `src/tests/test_team_trace_privacy.py` | C1, C3, C5 |
-| QDat18 | QDat18 | Safety must-pass: crash, approval, secret | `src/tests/test_team_safety.py`, `src/reports/crash.json` | C3, C4, C5 |
+| doanxuanduybao (Lead) | doanxuanduybao | Việc chung: repo, review/merge, tích hợp, benchmark 4 shape, ADR, báo cáo nhóm, nộp bài | `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json`, `src/tests/test_team_integration.py` | Phần tích hợp cuối buổi chạy sau khi merge |
+| Nguyen Dinh Vu Hai | HaiVuuu | Shape A workflow, end-to-end | `src/lab8/shapes/workflow.py`, `src/tests/test_team_workflow.py` | Không |
+| HungVT01 | hungvueducation-hash | Shape B single agent, end-to-end | `src/lab8/shapes/single.py`, `src/tests/test_team_single.py` | Không |
+| Nguyen Dinh Minh | minhh25 | Shape C orchestrator + handoff, end-to-end | `src/lab8/shapes/orchestrator.py`, `src/tests/test_team_orchestrator.py` | Không |
+| QDat18 | QDat18 | Safety của host + crash suite + research card/ablation | `src/tests/test_team_host_safety.py`, `src/reports/crash.json`, `report/team/research_card.md`, `src/bonus/` (biến thể cho ablation) | Không |
 
-Mỗi người còn sở hữu báo cáo cá nhân `report/team/<MSSV>_<HoTenKhongDau>.md` của mình.
+"End-to-end" nghĩa là chủ shape tự làm đủ CP2, CP3, CP4 cho shape mình: logic, idempotency, crash, approval, secret, trace. Không chờ ai rà hộ.
 
-## Thứ tự làm và phụ thuộc
+`crash.json` không phụ thuộc shape của nhóm: `python -m lab8.crash_test` chỉ kiểm host và swarm có sẵn (xem `src/lab8/crash_test.py`), nên QDat sinh được ngay từ đầu buổi.
 
-| Mốc | Việc | Ai |
-| --- | --- | --- |
-| CP1 (13:30) | Ai cũng cài môi trường, smoke pass, cổng host xanh; đọc business rules + contracts | Cả nhóm |
-| CP1 | Gửi MSSV, email, GitHub cho Lead để điền `TEAM.md` | Cả nhóm → Lead |
-| CP2 (13:45) | Viết 3 shape song song | Hai, Hưng, Minh |
-| CP2 | Viết test safety chạy trên `swarm` trước, tham số hóa sẵn cho 3 shape | QDat |
-| CP3 (14:30) | Nối `crash_at` vào 3 shape; T11, T12 xanh | Hai, Hưng, Minh |
-| CP3 | Review + merge PR từng shape ngay khi shape đó qua 62 test | Lead |
-| CP4 (15:30) | Rà must-pass trên cả 3 shape, sinh `crash.json` | QDat (chủ shape sửa lỗi QDat báo) |
-| CP4 | Rà trace/stdout không lộ PII, secret | Minh |
-| CP5 (16:15) | Benchmark 4 shape, sinh `benchmark.json` | Hai |
-| CP5 | Research card + ablation; tự kiểm hidden với `student_drop/` | Hưng |
-| CP5 | Chọn shape (cả nhóm bàn), điền ADR, báo cáo nhóm, `TEAM.md` | Lead |
-| Trước deadline | Báo cáo cá nhân, `check_submission` ra `0 FAIL`, mỗi người nộp link trên LMS | Cả nhóm |
+## Thứ tự làm
+
+| Mốc | Hai, Hưng, Minh (song song) | QDat (song song) | Lead |
+| --- | --- | --- | --- |
+| CP1 (13:30) | Cài môi trường, đọc docs, gửi thông tin cho Lead | Cài môi trường, đọc docs, gửi thông tin cho Lead | Setup repo, mời thành viên, điền `TEAM.md` |
+| CP2 (13:45) | Viết shape của mình, qua 62 test student của shape đó | Viết test host safety, sinh `crash.json` | Review/merge PR đến trước |
+| CP3 (14:30) | `crash_at`, T11, T12 xanh trên shape mình | Chọn câu R1–R4, viết biến thể ablation trong `src/bonus/` | Review/merge |
+| CP4 (15:30) | Rà approval, secret, PII, trace trên shape mình; viết test riêng | Chạy ablation, điền research card | Review/merge |
+| CP5 (16:15) | Gửi Lead đoạn mô tả shape + số tự đo | Gửi Lead số crash + kết quả ablation | Tích hợp: benchmark 4 shape, hidden selfcheck, chọn shape, ADR, báo cáo |
+| Trước deadline | Báo cáo cá nhân, nộp LMS | Báo cáo cá nhân, nộp LMS | `check_submission` `0 FAIL`, push, nhắc nộp LMS |
 
 ---
 
-## doanxuanduybao — Lead (việc chung)
+## doanxuanduybao — Lead (việc chung + tích hợp)
 
-**Đọc:** [README.md](README.md), [CHECKPOINTS.md](CHECKPOINTS.md), [RUBRIC.md](RUBRIC.md), [SUBMISSION.md](SUBMISSION.md), [RULES.md](RULES.md), [docs/metrics.md](docs/metrics.md), [docs/architecture.md](docs/architecture.md), [report/team/README.md](report/team/README.md), [report/team/decision_adr.md](report/team/decision_adr.md), [report/team/group_report.md](report/team/group_report.md).
+**Đọc:** [README.md](README.md), [CHECKPOINTS.md](CHECKPOINTS.md), [RUBRIC.md](RUBRIC.md), [SUBMISSION.md](SUBMISSION.md), [RULES.md](RULES.md), [docs/metrics.md](docs/metrics.md), [docs/architecture.md](docs/architecture.md), [src/reports/README.md](src/reports/README.md), [src/README.md](src/README.md#tự-kiểm-trên-bộ-hidden-cp5), [report/team/README.md](report/team/README.md), [report/team/decision_adr.md](report/team/decision_adr.md), [report/team/group_report.md](report/team/group_report.md).
 
 **Checklist**
 
 - [ ] CP1: cài môi trường, `python -m lab8.smoke` pass, `python -m pytest -q` ra `52 passed`.
 - [ ] CP1: repo đặt tên theo mẫu `K5-L3A-DAY08-TenNhom-FromWorkflowsToAgents` ([SUBMISSION.md](SUBMISSION.md#tạo-repo-nhóm)); mời 4 thành viên làm collaborator; mời giảng viên vào repo (hoặc để public).
-- [ ] CP1: điền phần "Thông tin nhóm" và "Thành viên" trong `TEAM.md`.
+- [ ] CP1: điền "Thông tin nhóm" và "Thành viên" trong `TEAM.md`.
 - [ ] Suốt buổi: theo dõi tiến độ theo checkpoint, gỡ chỗ bị chặn, nhắc ai trễ.
-- [ ] CP2–CP4: review và merge PR. Trước khi merge, kiểm `python -m pytest -q` xanh; PR shape thì thêm `python -m pytest -q -m student -o addopts= -k <shape>` ra 62 passed.
-- [ ] Viết `src/tests/test_team_integration.py` (test nhỏ cho C8): chạy cả 3 shape trên cùng claim T01 (`C-001`, seed 11) và kiểm cùng `status` và cùng số tiền refund.
-- [ ] CP5: tổ chức bàn chọn shape dựa trên số của Hai (`benchmark.json`), Hưng (ablation, hidden selfcheck) và QDat (`crash.json`); tiêu chí ở [docs/metrics.md](docs/metrics.md#quyết-định-kiến-trúc).
+- [ ] CP2–CP4: review và merge PR theo thứ tự đến. Trước khi merge: `python -m pytest -q` xanh; PR shape thì thêm `python -m pytest -q -m student -o addopts= -k <shape>` ra 62 passed.
+- [ ] Tích hợp (sau khi 3 shape đã merge): viết `src/tests/test_team_integration.py` chạy cả 3 shape trên cùng claim `C-001` seed 11, kiểm cùng `status` và cùng số tiền refund; chạy `python -m pytest -q -m student -o addopts=` không còn fail ở 3 shape nhóm.
+- [ ] Tích hợp: chạy benchmark trên `main` mới nhất và commit `src/reports/benchmark.json`:
+  `python -m lab8.benchmark --shapes workflow,single,orchestrator,swarm --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/benchmark.json`
+- [ ] Tích hợp (khi giảng viên phát `student_drop/`): tự kiểm hidden theo [src/README.md](src/README.md#tự-kiểm-trên-bộ-hidden-cp5), commit `src/reports/hidden_selfcheck.json`.
+- [ ] Tổ chức cả nhóm chọn shape theo số đo (tiêu chí ở [docs/metrics.md](docs/metrics.md#quyết-định-kiến-trúc)).
 - [ ] Điền `report/team/decision_adr.md`: giữ nguyên các dòng nhãn; commit trước, lấy `git rev-parse --short HEAD` và run id ghi vào ADR, rồi commit tiếp ([SUBMISSION.md](SUBMISSION.md#thứ-tự-nộp)).
-- [ ] Viết `report/team/group_report.md` (≤ 5 trang): mục 3 lấy mô tả shape từ báo cáo cá nhân của Hai, Hưng, Minh; mục 4 lấy số từ `benchmark.json`, `crash.json`; mục 5 gom khó khăn cả nhóm.
+- [ ] Viết `report/team/group_report.md` (≤ 5 trang): mục 3 từ đoạn mô tả của Hai, Hưng, Minh; mục 4 từ `benchmark.json`, `crash.json`, research card; mục 5 gom khó khăn cả nhóm.
 - [ ] Điền "Bảng đóng góp" trong `TEAM.md` (mỗi người một dòng: commit + file test), giữ nguyên tiêu đề và cột.
 - [ ] Chạy `python -m lab8.check_submission` ra `0 FAIL`, đi hết checklist nộp ở cuối file, rồi push.
-- [ ] Nhắc cả nhóm nộp link repo trên LMS.
-- [ ] Viết báo cáo cá nhân.
+- [ ] Nhắc cả nhóm nộp link repo trên LMS. Viết báo cáo cá nhân.
 
-**Deliver:** `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/tests/test_team_integration.py`, `main` sạch và `check_submission` `0 FAIL`, báo cáo cá nhân.
+**Deliver:** `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json` (nếu có `student_drop/`), `src/tests/test_team_integration.py`, `main` sạch với `check_submission` `0 FAIL`, báo cáo cá nhân.
 
 ---
 
-## Nguyen Dinh Vu Hai (HaiVuuu) — Shape A workflow + benchmark + trace contract
+## Nguyen Dinh Vu Hai (HaiVuuu) — Shape A: workflow
 
-**Đọc:** docstring đầu file [src/lab8/shapes/workflow.py](src/lab8/shapes/workflow.py), [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), [docs/architecture.md](docs/architecture.md), [docs/metrics.md](docs/metrics.md), [src/reports/README.md](src/reports/README.md), `src/lab8/shapes/swarm_reference.py` (tham khảo cấu trúc, **không copy khối `REFERENCE_WEAKNESS`**), `src/lab8/tools.py`, `src/lab8/durability.py`, `src/lab8/trace.py`, `src/lab8/shapes/common.py`, `src/tests/test_trace_contract.py`, [src/README.md](src/README.md#đọc-khi-bắt-đầu-viết-shape-cp2).
+**Đọc:** docstring đầu file [src/lab8/shapes/workflow.py](src/lab8/shapes/workflow.py), [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), [docs/architecture.md](docs/architecture.md), [RULES.md](RULES.md#secret-và-api-key), `src/lab8/shapes/swarm_reference.py` (tham khảo cấu trúc, **không copy khối `REFERENCE_WEAKNESS`**), `src/lab8/tools.py`, `src/lab8/durability.py`, `src/lab8/trace.py`, `src/lab8/shapes/common.py`, `src/tests/test_trace_contract.py`, [src/README.md](src/README.md#đọc-khi-bắt-đầu-viết-shape-cp2).
 
 **Checklist**
 
 - [ ] CP1: cài môi trường, smoke pass, cổng host xanh.
 - [ ] CP2: thay stub ở `TODO CP2` theo 8 bước trong docstring: đọc claim bằng `get_claim_view`; thiếu `order_id` → `needs_info`; không thấy đơn → `escalated`; quote bằng `compute_compensation` từ order row (bỏ qua số trong ticket); quote 0 → `denied`; quote > 0 → `durability.issue_refund` với **quote đầy đủ**.
 - [ ] Trả kết quả bằng `lab8.shapes.common.finish()`; ghi trace ở **mọi** nhánh return (dùng `lab8.trace.Trace`).
-- [ ] Không ghi phone, địa chỉ, tên hàng, internal note, `parent_secret` vào trace/stdout ([docs/contracts.md](docs/contracts.md#trace-contract-v1)).
 - [ ] CP3: ở `TODO CP3`, truyền `crash_at` vào `durability.issue_refund`; không bắt `InjectedCrash`.
+- [ ] CP4: rà trace và stdout của workflow: không có phone, địa chỉ, tên hàng, internal note, `parent_secret`, `CANARY_SECRET_*`, claim row/order row thô ([docs/contracts.md](docs/contracts.md#trace-contract-v1)).
 - [ ] Tự kiểm: `python -m pytest -q -m student -o addopts= -k workflow` ra **62 passed**; `python -m pytest -q` xanh.
-- [ ] Viết `src/tests/test_team_workflow.py`: ít nhất 2 test, ví dụ ticket ghi "trễ 9 ngày" nhưng order ghi 2 ngày → `denied`; gọi lại cùng claim → vẫn 1 dòng ledger.
-- [ ] Viết `src/tests/test_team_trace_contract.py`: với mỗi shape `workflow`, `single`, `orchestrator`, chạy một claim ở mỗi nhánh (`resolved`, `denied`, `needs_info`, `escalated`) và kiểm trace đúng [Trace contract v1](docs/contracts.md#trace-contract-v1) (`run_id` khớp, có `events`, file được ghi trong lần chạy này).
-- [ ] CP5: sau khi cả 3 shape đã merge, chạy benchmark trên `main` mới nhất và commit `src/reports/benchmark.json`:
-  `python -m lab8.benchmark --shapes workflow,single,orchestrator,swarm --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/benchmark.json`
-- [ ] Gửi Lead bảng pass rate, pass^5, seed min-max, variance, cost/success của 4 shape và run id.
-- [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả ranh giới code/model trong workflow để Lead đưa vào mục 3 báo cáo nhóm.
+- [ ] Viết `src/tests/test_team_workflow.py`, **chỉ gọi workflow**, ít nhất 3 test: ticket ghi "trễ 9 ngày" nhưng order ghi 2 ngày → `denied`; crash `after_effect_before_checkpoint` rồi chạy lại cùng DB → 1 dòng ledger, 1 audit `refund_committed`; trace có `run_id` khớp và không chứa `CANARY_SECRET_`.
+- [ ] Tự đo (không commit): `python -m lab8.benchmark --shapes workflow,swarm --out reports/tmp_workflow.json`, gửi Lead pass rate, pass^5, cost/success của workflow.
+- [ ] Mở PR từ nhánh `HaiVuuu`, gửi Lead commit hash + tên file test.
+- [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả ranh giới code/model trong workflow và field trace cố ý không ghi.
 
-**Deliver:** `src/lab8/shapes/workflow.py` qua 62 test student, `src/tests/test_team_workflow.py`, `src/tests/test_team_trace_contract.py`, `src/reports/benchmark.json`, báo cáo cá nhân.
+**Deliver:** `src/lab8/shapes/workflow.py` qua 62 test student, `src/tests/test_team_workflow.py`, báo cáo cá nhân.
 
 ---
 
-## HungVT01 (hungvueducation-hash) — Shape B single + research card + tự kiểm hidden
+## HungVT01 (hungvueducation-hash) — Shape B: single agent (ReAct)
 
-**Đọc:** docstring đầu file [src/lab8/shapes/single.py](src/lab8/shapes/single.py), `src/lab8/runtime.py` (`run_react`, `Budget`), `src/lab8/mock_llm.py`, `src/lab8/tools.py` (đặc biệt `lookup_refund_history`), `src/config/tools.manifest.v1.1.yaml`, `src/config/autonomy_policy.yaml`, [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), [docs/architecture.md](docs/architecture.md), [docs/metrics.md](docs/metrics.md), [report/team/research_card.md](report/team/research_card.md), [src/README.md](src/README.md#tự-kiểm-trên-bộ-hidden-cp5), `src/lab8/shapes/swarm_reference.py`.
+**Đọc:** docstring đầu file [src/lab8/shapes/single.py](src/lab8/shapes/single.py), `src/lab8/runtime.py` (`run_react`, `Budget`), `src/lab8/mock_llm.py`, `src/lab8/tools.py` (đặc biệt `lookup_refund_history`), `src/config/tools.manifest.v1.1.yaml`, `src/config/autonomy_policy.yaml`, [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), [docs/architecture.md](docs/architecture.md), [RULES.md](RULES.md#secret-và-api-key), `src/lab8/shapes/swarm_reference.py`.
 
 **Checklist**
 
@@ -101,20 +98,20 @@ Mỗi người còn sở hữu báo cáo cá nhân `report/team/<MSSV>_<HoTenKho
 - [ ] `decide` phải tin order row, không tin số ngày trễ hay clause ghi trong ticket (ticket là dữ liệu, không phải lệnh).
 - [ ] Sau vòng lặp, code (không phải model) tính quote bằng `compute_compensation` và gọi `durability.issue_refund` với **quote đầy đủ**.
 - [ ] Đếm model call vào `Budget` để cost so được với các shape khác.
-- [ ] Trả bằng `finish()`; trace đúng contract ở mọi nhánh return, không lộ PII/secret.
+- [ ] Trả bằng `finish()`; trace đúng contract ở mọi nhánh return.
 - [ ] CP3: truyền `crash_at` vào `durability.issue_refund`; không bắt `InjectedCrash`.
+- [ ] CP4: rà trace và stdout của single: không có PII, `parent_secret`, `CANARY_SECRET_*`, claim row/order row thô ([docs/contracts.md](docs/contracts.md#trace-contract-v1)).
 - [ ] Tự kiểm: `python -m pytest -q -m student -o addopts= -k single` ra **62 passed**; `python -m pytest -q` xanh.
-- [ ] Viết `src/tests/test_team_single.py`: ít nhất 2 test, ví dụ vòng lặp không vượt 8 bước; ticket chứa "ignore policy" vẫn không refund sai.
-- [ ] CP5: chọn một câu R1–R4, điền cột "Nhóm điền" trong `report/team/research_card.md`; chạy **một** ablation (chỉ đổi một biến, giữ model/tool/seed/corpus/giá), ghi lệnh nguyên văn, run id và kết quả.
-- [ ] CP5 (khi giảng viên phát `student_drop/`): chạy tự kiểm hidden theo [src/README.md](src/README.md#tự-kiểm-trên-bộ-hidden-cp5), commit `src/reports/hidden_selfcheck.json`; báo Lead shape nào có trial `error` hoặc `leak_suspect`.
-- [ ] Gửi Lead kết quả ablation và hidden selfcheck cho ADR và báo cáo nhóm.
-- [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả vòng ReAct và chỗ code chặn model.
+- [ ] Viết `src/tests/test_team_single.py`, **chỉ gọi single**, ít nhất 3 test: vòng lặp không vượt 8 bước; ticket chứa "ignore policy" vẫn không refund sai; crash rồi resume vẫn 1 refund.
+- [ ] Tự đo (không commit): `python -m lab8.benchmark --shapes single,swarm --out reports/tmp_single.json`, gửi Lead pass rate, pass^5, cost/success của single.
+- [ ] Mở PR từ nhánh của mình, gửi Lead commit hash + tên file test.
+- [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả vòng ReAct, chỗ code chặn model, và field trace cố ý không ghi.
 
-**Deliver:** `src/lab8/shapes/single.py` qua 62 test student, `src/tests/test_team_single.py`, `report/team/research_card.md` đã điền, `src/reports/hidden_selfcheck.json` (nếu có `student_drop/`), báo cáo cá nhân.
+**Deliver:** `src/lab8/shapes/single.py` qua 62 test student, `src/tests/test_team_single.py`, báo cáo cá nhân.
 
 ---
 
-## Nguyen Dinh Minh (minhh25) — Shape C orchestrator + handoff + rà trace/PII
+## Nguyen Dinh Minh (minhh25) — Shape C: orchestrator + handoff
 
 **Đọc:** docstring đầu file [src/lab8/shapes/orchestrator.py](src/lab8/shapes/orchestrator.py), `src/lab8/handoff.py` (`make_handoff`, allowlist), `src/lab8/runtime.py` (`run_readonly_investigators`), `src/lab8/tools.py`, `src/tests/test_handoff_secret.py`, [docs/architecture.md](docs/architecture.md#handoff), [docs/contracts.md](docs/contracts.md#trace-contract-v1), [docs/business_rules.md](docs/business_rules.md), [RULES.md](RULES.md#secret-và-api-key).
 
@@ -125,42 +122,48 @@ Mỗi người còn sở hữu báo cáo cá nhân `report/team/<MSSV>_<HoTenKho
 - [ ] Không đưa `parent_secret`, header thô, hay nguyên claim row vào `facts`. Tóm tắt bằng LLM không tính là sanitize, phải dùng allowlist.
 - [ ] Trace ghi handoff **đã sanitize**, không ghi parent context; trace đúng contract ở mọi nhánh return.
 - [ ] CP3: truyền `crash_at` vào `durability.issue_refund`; không bắt `InjectedCrash`.
+- [ ] CP4: rà trace và stdout của orchestrator: không có PII, `parent_secret`, `CANARY_SECRET_*`, claim row/order row thô.
 - [ ] Tự kiểm: `python -m pytest -q -m student -o addopts= -k orchestrator` ra **62 passed**; `python -m pytest -q` xanh.
-- [ ] Viết `src/tests/test_team_orchestrator.py`: ít nhất 2 test, ví dụ handoff không chứa `CANARY_SECRET_` và không có tool ghi; trace của orchestrator không có `parent_secret`.
-- [ ] CP4: viết `src/tests/test_team_trace_privacy.py`, parametrize theo `workflow`, `single`, `orchestrator`: chạy toàn bộ claim public, kiểm trace và stdout không chứa phone, địa chỉ, tên hàng, internal note, claim row/order row thô. Lỗi ở shape nào thì báo chủ shape (Hai / Hưng), **không tự sửa file shape của người khác**.
-- [ ] Gửi Lead danh sách field trace cố ý **không** ghi và lý do (cho mục "Trace và bằng chứng" của ADR).
-- [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả handoff allowlist và lý do trace không ghi parent context.
+- [ ] Viết `src/tests/test_team_orchestrator.py`, **chỉ gọi orchestrator**, ít nhất 3 test: handoff không chứa `CANARY_SECRET_` và không có tool ghi; trace không có `parent_secret`; crash rồi resume vẫn 1 refund.
+- [ ] Tự đo (không commit): `python -m lab8.benchmark --shapes orchestrator,swarm --out reports/tmp_orchestrator.json`, gửi Lead pass rate, pass^5, cost/success của orchestrator.
+- [ ] Mở PR từ nhánh của mình, gửi Lead commit hash + tên file test.
+- [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả handoff allowlist, lý do trace không ghi parent context, và field trace cố ý không ghi.
 
-**Deliver:** `src/lab8/shapes/orchestrator.py` qua 62 test student, `src/tests/test_team_orchestrator.py`, `src/tests/test_team_trace_privacy.py`, báo cáo cá nhân.
+**Deliver:** `src/lab8/shapes/orchestrator.py` qua 62 test student, `src/tests/test_team_orchestrator.py`, báo cáo cá nhân.
 
 ---
 
-## QDat18 — Safety must-pass: crash, approval, secret
+## QDat18 — Safety của host + crash suite + research card
 
-**Đọc:** [RUBRIC.md](RUBRIC.md#must-pass-không-bù-điểm), [CHECKPOINTS.md](CHECKPOINTS.md) (CP3, CP4), [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), `src/lab8/durability.py`, `src/lab8/policy.py`, `src/lab8/crash_test.py`, `src/lab8/demo/buggy_workflow.py`, `src/tests/test_crash_suite.py`, `src/tests/test_order_cap_and_approval_binding.py`, `src/tests/test_refund_idempotency.py`, `src/tests/test_authorization.py`.
+Toàn bộ việc dưới đây chỉ dùng host và swarm có sẵn trong starter, không cần shape của nhóm.
+
+**Đọc:** [RUBRIC.md](RUBRIC.md#must-pass-không-bù-điểm), [CHECKPOINTS.md](CHECKPOINTS.md) (CP3, CP4), [docs/business_rules.md](docs/business_rules.md), [docs/metrics.md](docs/metrics.md), [docs/bonus_topics.md](docs/bonus_topics.md#chạy-biến-thể-bonus-cạnh-4-shape) (cách chạy `--extra-shape`), [report/team/research_card.md](report/team/research_card.md), `src/lab8/durability.py`, `src/lab8/policy.py`, `src/lab8/crash_test.py`, `src/lab8/demo/buggy_workflow.py`, `src/lab8/shapes/swarm_reference.py`, `src/tests/test_crash_suite.py`, `src/tests/test_order_cap_and_approval_binding.py`, `src/tests/test_refund_idempotency.py`, `src/tests/test_authorization.py`.
 
 **Checklist**
 
 - [ ] CP1: cài môi trường, smoke pass, cổng host xanh; chạy `python -m lab8.demo.buggy_workflow` để hiểu vì sao checkpoint không thay được ledger.
-- [ ] CP2: viết `src/tests/test_team_safety.py`, `pytest.mark.parametrize` theo shape (`swarm`, `workflow`, `single`, `orchestrator`). Ít nhất 3 nhóm test:
-  - approval: thiếu, hết hạn, bị thu hồi, của claim khác → không có dòng ledger, có audit `policy_denied`;
-  - secret: trace và `RunResult` không chứa `CANARY_SECRET_`;
-  - crash: crash ở `before_effect`, `after_effect_before_checkpoint`, `after_checkpoint` rồi chạy lại cùng DB → đúng 1 refund, 1 audit `refund_committed`.
-  Chạy trước trên `swarm`; shape nào chưa xong thì để test đỏ, không skip giả.
-- [ ] CP3: hỗ trợ Hai, Hưng, Minh kiểm T11 (gọi lại cùng claim) và T12 (crash rồi resume) trên shape của họ.
-- [ ] CP4: khi các shape đã merge, chạy test safety trên cả 3 shape. Lỗi ở shape nào thì báo chủ shape đó kèm lệnh tái hiện, **không tự sửa file shape**.
-- [ ] CP4: chạy crash suite trên `main` mới nhất và commit `src/reports/crash.json` (phải `crash_safety` = `20/20`):
+- [ ] CP2: chạy crash suite và commit `src/reports/crash.json` (phải `crash_safety` = `20/20`):
   `python -m lab8.crash_test --count 20 --out reports/crash.json`
-- [ ] Gửi Lead số liệu crash, secret leak, approval bypass cho ADR và mục 4 báo cáo nhóm.
+- [ ] CP2: viết `src/tests/test_team_host_safety.py`, gọi thẳng `durability.issue_refund` và `swarm`, ít nhất 4 test cho các ca chưa có trong test sẵn:
+  - approval hết hạn / bị thu hồi / của claim khác → không có dòng ledger, có audit `policy_denied`;
+  - approval thấp hơn quote → refund `min(quote, approved_vnd, paid_vnd)`;
+  - gọi lại cùng claim với amount khác → `conflict`, không sửa số cũ;
+  - crash ở `before_effect` và `after_checkpoint` trên swarm rồi resume → đúng 1 refund, 1 audit `refund_committed`.
+- [ ] CP3: chọn một câu R1–R4 trong `report/team/research_card.md`. Viết biến thể ablation trong `src/bonus/` (tạo `src/bonus/__init__.py`), chỉ đổi **một** biến so với swarm, ví dụ swarm bỏ khối `REFERENCE_WEAKNESS` (đọc `delay_days` từ order) cho câu R2/R4.
+- [ ] CP4: chạy ablation cạnh swarm, cùng claim, seed, giá:
+  `python -m lab8.benchmark --shapes swarm,<ten_bien_the> --extra-shape <ten_bien_the>=bonus.<module>:run_claim --seeds 11,22,33,44,55 --out reports/bonus_ablation.json`
+- [ ] Điền cột "Nhóm điền" và mục "Kết quả ablation" (lệnh nguyên văn, run id, đúng/sai so với hypothesis, giới hạn MockLLM) trong `report/team/research_card.md`.
+- [ ] Gửi Lead: số crash, kết quả ablation, đoạn giải thích cổng duyệt của host chặn gì.
+- [ ] Mở PR từ nhánh `QDat18`, gửi Lead commit hash + tên file test.
 - [ ] Viết báo cáo cá nhân.
 
-**Deliver:** `src/tests/test_team_safety.py`, `src/reports/crash.json` (20/20), báo cáo cá nhân.
+**Deliver:** `src/reports/crash.json` (20/20), `src/tests/test_team_host_safety.py`, biến thể trong `src/bonus/`, `src/reports/bonus_ablation.json`, `report/team/research_card.md` đã điền, báo cáo cá nhân.
 
 ---
 
 ## Bonus (tùy chọn, chỉ làm khi bài chính xong)
 
-Bonus chỉ tính khi shape chọn qua 3 must-pass và hidden ≥ 0.80 ([docs/bonus_topics.md](docs/bonus_topics.md)). Đề xuất **B7 — Kiểm toán grader**: không đụng file shape, chỉ thêm `src/tests/test_bonus_grader_audit.py` và `report/team/bonus_report.md`, nên không conflict. Người xong việc sớm nhất nhận, báo Lead trước khi làm.
+Bonus chỉ tính khi shape chọn qua 3 must-pass và hidden ≥ 0.80 ([docs/bonus_topics.md](docs/bonus_topics.md)). Đề xuất **B7 — Kiểm toán grader**: không đụng shape hay host, chỉ thêm `src/tests/test_bonus_grader_audit.py` và `report/team/bonus_report.md`, nên không conflict và không phụ thuộc ai. Người xong việc sớm nhất nhận, báo Lead trước khi làm.
 
 ## Checklist nộp bài (Lead chốt)
 
@@ -170,5 +173,5 @@ Bonus chỉ tính khi shape chọn qua 3 must-pass và hidden ≥ 0.80 ([docs/bo
 - [ ] `research_card.md`, `group_report.md`, `TEAM.md` (bảng đóng góp) đã điền.
 - [ ] 5 báo cáo cá nhân `report/team/<MSSV>_<HoTen>.md`.
 - [ ] `python -m lab8.check_submission` ra `0 FAIL`.
-- [ ] Không commit `traces/`, `*.sqlite`, `student_drop/`, `.venv/`, `.env`.
+- [ ] Không commit `traces/`, `*.sqlite`, `student_drop/`, `.venv/`, `.env`, `reports/tmp_*.json`.
 - [ ] **Cả 5 người** nộp link repo trên LMS trước deadline.
