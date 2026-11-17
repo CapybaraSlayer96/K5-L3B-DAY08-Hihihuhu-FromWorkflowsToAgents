@@ -8,7 +8,7 @@
 2. **Mỗi file chỉ có một chủ.** Chỉ sửa file trong cột "File sở hữu" của mình. Không ai sửa file shape của người khác.
 3. **Test của mỗi người chỉ chạy trên phần của người đó.** Test shape chỉ gọi shape của mình (`SHAPES["workflow"]`, ...), không parametrize sang shape khác. Nhờ vậy test của bạn xanh hay đỏ không phụ thuộc người khác.
 4. **Không ai sửa file thước đo:** `src/lab8/metrics.py`, `src/lab8/durability.py`, `src/lab8/policy.py`, `src/config/*`, `src/data/*`, `src/grader_audit/*`. Không sửa tay JSON trong `src/reports/`.
-5. **Mỗi người làm trên nhánh riêng** (tên nhánh = GitHub username), mở PR vào `main`, Lead review và merge. Không push thẳng `main`, không force-push.
+5. **Mỗi người làm trên nhánh riêng** (tên nhánh = tên người hoặc GitHub username), mở PR vào `main`, Lead review và merge. Không push thẳng `main`, không force-push.
 6. **Mỗi người phải có:** ít nhất một commit kỹ thuật có nội dung, ít nhất một **file test riêng** trong `src/tests/` (rubric C8), và một báo cáo cá nhân `report/team/<MSSV>_<HoTenKhongDau>.md` (copy từ `report/team/MSSV_HoTen.md`, **không sửa file mẫu**).
 7. Trước khi mở PR, chạy trong `src/`: `python -m pytest -q` phải xanh (không có dòng `failed`).
 8. File chung (`TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`) chỉ Lead sửa. Thành viên gửi thông tin (MSSV, email, commit hash, tên test, số liệu, đoạn mô tả phần mình) cho Lead qua chat hoặc comment PR.
@@ -17,11 +17,11 @@
 
 | Người | GitHub | Vai | File sở hữu | Phụ thuộc ai |
 | --- | --- | --- | --- | --- |
-| doanxuanduybao (Lead) | doanxuanduybao | Việc chung: repo, review/merge, tích hợp, benchmark 4 shape, ADR, báo cáo nhóm, nộp bài | `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json`, `src/tests/test_team_integration.py` | Phần tích hợp cuối buổi chạy sau khi merge |
-| Nguyen Dinh Vu Hai | HaiVuuu | Shape A workflow, end-to-end | `src/lab8/shapes/workflow.py`, `src/tests/test_team_workflow.py` | Không |
-| HungVT01 | hungvueducation-hash | Shape B single agent, end-to-end | `src/lab8/shapes/single.py`, `src/tests/test_team_single.py` | Không |
-| Nguyen Dinh Minh | minhh25 | Shape C orchestrator + handoff, end-to-end | `src/lab8/shapes/orchestrator.py`, `src/tests/test_team_orchestrator.py` | Không |
-| QDat18 | QDat18 | Safety của host + crash suite + research card/ablation | `src/tests/test_team_host_safety.py`, `src/reports/crash.json`, `report/team/research_card.md`, `src/bonus/` (biến thể cho ablation) | Không |
+| Đoàn Xuân Duy Bảo (Lead) | CapybaraSlayer96 | Việc chung: repo, review/merge, tích hợp, benchmark 4 shape, ADR, báo cáo nhóm, nộp bài | `TEAM.md`, `report/team/group_report.md`, `report/team/decision_adr.md`, `src/reports/benchmark.json`, `src/reports/hidden_selfcheck.json`, `src/tests/test_team_integration.py` | Phần tích hợp cuối buổi chạy sau khi merge |
+| Nguyễn Đình Vũ Hải | HaiVuuu | Shape A workflow, end-to-end | `src/lab8/shapes/workflow.py`, `src/tests/test_team_workflow.py` | Không |
+| Vũ Tiến Hùng | hungvueducation-hash | Shape B single agent, end-to-end | `src/lab8/shapes/single.py`, `src/tests/test_team_single.py` | Không |
+| Nguyễn Đình Minh | minhh25 | Shape C orchestrator + handoff, end-to-end | `src/lab8/shapes/orchestrator.py`, `src/tests/test_team_orchestrator.py` | Không |
+| Hoàng Quang Đạt | QDat18 | Safety của host + crash suite + research card/ablation | `src/tests/test_team_host_safety.py`, `src/reports/crash.json`, `report/team/research_card.md`, `src/bonus/` (biến thể cho ablation) | Không |
 
 "End-to-end" nghĩa là chủ shape tự làm đủ CP2, CP3, CP4 cho shape mình: logic, idempotency, crash, approval, secret, trace. Không chờ ai rà hộ.
 
@@ -40,7 +40,7 @@
 
 ---
 
-## doanxuanduybao — Lead (việc chung + tích hợp)
+## Đoàn Xuân Duy Bảo (CapybaraSlayer96) — Lead (việc chung + tích hợp)
 
 **Đọc:** [README.md](README.md), [CHECKPOINTS.md](CHECKPOINTS.md), [RUBRIC.md](RUBRIC.md), [SUBMISSION.md](SUBMISSION.md), [RULES.md](RULES.md), [docs/metrics.md](docs/metrics.md), [docs/architecture.md](docs/architecture.md), [src/reports/README.md](src/reports/README.md), [src/README.md](src/README.md#tự-kiểm-trên-bộ-hidden-cp5), [report/team/README.md](report/team/README.md), [report/team/decision_adr.md](report/team/decision_adr.md), [report/team/group_report.md](report/team/group_report.md).
 
@@ -66,7 +66,7 @@
 
 ---
 
-## Nguyen Dinh Vu Hai (HaiVuuu) — Shape A: workflow
+## Nguyễn Đình Vũ Hải (HaiVuuu) — Shape A: workflow
 
 **Đọc:** docstring đầu file [src/lab8/shapes/workflow.py](src/lab8/shapes/workflow.py), [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), [docs/architecture.md](docs/architecture.md), [RULES.md](RULES.md#secret-và-api-key), `src/lab8/shapes/swarm_reference.py` (tham khảo cấu trúc, **không copy khối `REFERENCE_WEAKNESS`**), `src/lab8/tools.py`, `src/lab8/durability.py`, `src/lab8/trace.py`, `src/lab8/shapes/common.py`, `src/tests/test_trace_contract.py`, [src/README.md](src/README.md#đọc-khi-bắt-đầu-viết-shape-cp2).
 
@@ -80,14 +80,14 @@
 - [ ] Tự kiểm: `python -m pytest -q -m student -o addopts= -k workflow` ra **62 passed**; `python -m pytest -q` xanh.
 - [ ] Viết `src/tests/test_team_workflow.py`, **chỉ gọi workflow**, ít nhất 3 test: ticket ghi "trễ 9 ngày" nhưng order ghi 2 ngày → `denied`; crash `after_effect_before_checkpoint` rồi chạy lại cùng DB → 1 dòng ledger, 1 audit `refund_committed`; trace có `run_id` khớp và không chứa `CANARY_SECRET_`.
 - [ ] Tự đo (không commit): `python -m lab8.benchmark --shapes workflow,swarm --out reports/tmp_workflow.json`, gửi Lead pass rate, pass^5, cost/success của workflow.
-- [ ] Mở PR từ nhánh `HaiVuuu`, gửi Lead commit hash + tên file test.
+- [ ] Mở PR từ nhánh của mình, gửi Lead commit hash + tên file test.
 - [ ] Viết báo cáo cá nhân, có 1 đoạn mô tả ranh giới code/model trong workflow và field trace cố ý không ghi.
 
 **Deliver:** `src/lab8/shapes/workflow.py` qua 62 test student, `src/tests/test_team_workflow.py`, báo cáo cá nhân.
 
 ---
 
-## HungVT01 (hungvueducation-hash) — Shape B: single agent (ReAct)
+## Vũ Tiến Hùng (hungvueducation-hash) — Shape B: single agent (ReAct)
 
 **Đọc:** docstring đầu file [src/lab8/shapes/single.py](src/lab8/shapes/single.py), `src/lab8/runtime.py` (`run_react`, `Budget`), `src/lab8/mock_llm.py`, `src/lab8/tools.py` (đặc biệt `lookup_refund_history`), `src/config/tools.manifest.v1.1.yaml`, `src/config/autonomy_policy.yaml`, [docs/business_rules.md](docs/business_rules.md), [docs/contracts.md](docs/contracts.md), [docs/architecture.md](docs/architecture.md), [RULES.md](RULES.md#secret-và-api-key), `src/lab8/shapes/swarm_reference.py`.
 
@@ -111,7 +111,7 @@
 
 ---
 
-## Nguyen Dinh Minh (minhh25) — Shape C: orchestrator + handoff
+## Nguyễn Đình Minh (minhh25) — Shape C: orchestrator + handoff
 
 **Đọc:** docstring đầu file [src/lab8/shapes/orchestrator.py](src/lab8/shapes/orchestrator.py), `src/lab8/handoff.py` (`make_handoff`, allowlist), `src/lab8/runtime.py` (`run_readonly_investigators`), `src/lab8/tools.py`, `src/tests/test_handoff_secret.py`, [docs/architecture.md](docs/architecture.md#handoff), [docs/contracts.md](docs/contracts.md#trace-contract-v1), [docs/business_rules.md](docs/business_rules.md), [RULES.md](RULES.md#secret-và-api-key).
 
@@ -133,7 +133,7 @@
 
 ---
 
-## QDat18 — Safety của host + crash suite + research card
+## Hoàng Quang Đạt (QDat18) — Safety của host + crash suite + research card
 
 Toàn bộ việc dưới đây chỉ dùng host và swarm có sẵn trong starter, không cần shape của nhóm.
 
@@ -154,7 +154,7 @@ Toàn bộ việc dưới đây chỉ dùng host và swarm có sẵn trong start
   `python -m lab8.benchmark --shapes swarm,<ten_bien_the> --extra-shape <ten_bien_the>=bonus.<module>:run_claim --seeds 11,22,33,44,55 --out reports/bonus_ablation.json`
 - [ ] Điền cột "Nhóm điền" và mục "Kết quả ablation" (lệnh nguyên văn, run id, đúng/sai so với hypothesis, giới hạn MockLLM) trong `report/team/research_card.md`.
 - [ ] Gửi Lead: số crash, kết quả ablation, đoạn giải thích cổng duyệt của host chặn gì.
-- [ ] Mở PR từ nhánh `QDat18`, gửi Lead commit hash + tên file test.
+- [ ] Mở PR từ nhánh của mình, gửi Lead commit hash + tên file test.
 - [ ] Viết báo cáo cá nhân.
 
 **Deliver:** `src/reports/crash.json` (20/20), `src/tests/test_team_host_safety.py`, biến thể trong `src/bonus/`, `src/reports/bonus_ablation.json`, `report/team/research_card.md` đã điền, báo cáo cá nhân.
