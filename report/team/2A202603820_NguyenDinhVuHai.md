@@ -1,4 +1,4 @@
-# Báo cáo cá nhân — <MSSV>_NguyenDinhVuHai
+# Báo cáo cá nhân — 2A202603820_NguyenDinhVuHai
 
 ## 1. Thông tin thành viên
 

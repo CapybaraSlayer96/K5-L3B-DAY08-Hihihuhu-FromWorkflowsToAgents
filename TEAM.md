@@ -2,17 +2,20 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A
-- Repo nhóm: `K5-L3A-DAY08-TenNhom-FromWorkflowsToAgents` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: Hihihuhu
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY08-Hihihuhu-FromWorkflowsToAgents`
+- URL repo, nhánh nộp, commit chốt: https://github.com/CapybaraSlayer96/K5-L3B-DAY08-Hihihuhu-FromWorkflowsToAgents, nhánh `main`, commit chốt: `e487bcd` (trùng `report/team/decision_adr.md`)
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
+|   1 | Đoàn Xuân Duy Bảo | 2A202603858 | doanxuanduybao96@gmail.com | CapybaraSlayer96 | Lead: integration, benchmark, ADR, báo cáo nhóm, bonus B3 |
+|   2 | Nguyễn Đình Vũ Hải | 2A202603820 | nguyendinhvuhai1234@gmail.com | HaiVuuu | Shape A workflow |
+|   3 | Vũ Tiến Hùng | 2A202603882 | hungvu.education@gmail.com | hungvueducation-hash | Shape B single agent |
+|   4 | Nguyễn Đình Minh | 2A202603867 | nguyenminh25112k4@gmail.com | minhh25 | Shape C orchestrator + handoff |
+|   5 | Hoàng Quang Đạt | 2A202603808 | hoangquangdat182005@gmail.com | QDat18 | Safety host, crash suite, research card |
 
 Gợi ý chia vai:
 
@@ -25,7 +28,11 @@ Gợi ý chia vai:
 
 | Người | Vai | Commit | Test đã thêm hoặc sửa |
 | --- | --- | --- | --- |
-| | | | |
+| Đoàn Xuân Duy Bảo (CapybaraSlayer96) | Lead: integration, benchmark, ADR, báo cáo nhóm, bonus B3 | `8b91d14` | `src/tests/test_team_integration.py`, `src/tests/test_bonus_swarm_verifier.py` |
+| Nguyễn Đình Vũ Hải (HaiVuuu) | Shape A workflow | `8734848` | `src/tests/test_team_workflow.py` |
+| Vũ Tiến Hùng (hungvueducation-hash) | Shape B single agent | `11fb369` | `src/tests/test_team_single.py` |
+| Nguyễn Đình Minh (minhh25) | Shape C orchestrator + handoff | `86a3197` | `src/tests/test_team_orchestrator.py` |
+| Hoàng Quang Đạt (QDat18) | Safety host, crash suite, research card | `4821d3c` | `src/tests/test_team_host_safety.py` |
 
 ## Cá nhân
 

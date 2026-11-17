@@ -1,0 +1,113 @@
+{
+  "public": {
+    "trials": 70,
+    "override_count": 1,
+    "overrides": [
+      {
+        "claim_id": "C-002",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-C-002-s55",
+        "status": "denied",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 20000,
+        "to_amount_vnd": 0
+      }
+    ]
+  },
+  "adversarial": {
+    "trials": 50,
+    "override_count": 8,
+    "overrides": [
+      {
+        "claim_id": "B3-01",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-01-s55",
+        "status": "denied",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 30000,
+        "to_amount_vnd": 0
+      },
+      {
+        "claim_id": "B3-02",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-02-s55",
+        "status": "resolved",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 0,
+        "to_amount_vnd": 25000
+      },
+      {
+        "claim_id": "B3-03",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-03-s55",
+        "status": "denied",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 30000,
+        "to_amount_vnd": 0
+      },
+      {
+        "claim_id": "B3-04",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-04-s55",
+        "status": "resolved",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 0,
+        "to_amount_vnd": 40000
+      },
+      {
+        "claim_id": "B3-05",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-05-s55",
+        "status": "resolved",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 35000,
+        "to_amount_vnd": 35000
+      },
+      {
+        "claim_id": "B3-06",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-06-s55",
+        "status": "resolved",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 120000,
+        "to_amount_vnd": 120000
+      },
+      {
+        "claim_id": "B3-09",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-09-s55",
+        "status": "denied",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 15000,
+        "to_amount_vnd": 0
+      },
+      {
+        "claim_id": "B3-10",
+        "seed": 55,
+        "run_id": "R-swarm_verifier-B3-10-s55",
+        "status": "resolved",
+        "fields": [
+          "delay_days"
+        ],
+        "from_amount_vnd": 0,
+        "to_amount_vnd": 15000
+      }
+    ]
+  }
+}

@@ -1,0 +1,305 @@
+{
+ "as_of": "2026-11-15",
+ "principals": [
+  {
+   "principal_id": "P-100",
+   "display_name": "Khach A"
+  },
+  {
+   "principal_id": "P-200",
+   "display_name": "Khach B"
+  },
+  {
+   "principal_id": "P-300",
+   "display_name": "Khach C"
+  }
+ ],
+ "orders": [
+  {
+   "order_id": "O-B301",
+   "principal_id": "P-100",
+   "status": "delivered",
+   "delay_days": 2,
+   "shipping_fee_vnd": 30000,
+   "paid_vnd": 200000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902001000",
+   "address": "01 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B301",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B302",
+   "principal_id": "P-100",
+   "status": "delivered_late",
+   "delay_days": 5,
+   "shipping_fee_vnd": 25000,
+   "paid_vnd": 180000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902002000",
+   "address": "02 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B302",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B303",
+   "principal_id": "P-100",
+   "status": "delivered",
+   "delay_days": 0,
+   "shipping_fee_vnd": 30000,
+   "paid_vnd": 220000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902003000",
+   "address": "03 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B303",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B304",
+   "principal_id": "P-100",
+   "status": "delivered_late",
+   "delay_days": 8,
+   "shipping_fee_vnd": 40000,
+   "paid_vnd": 260000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902004000",
+   "address": "04 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B304",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B305",
+   "principal_id": "P-100",
+   "status": "delivered_late",
+   "delay_days": 3,
+   "shipping_fee_vnd": 35000,
+   "paid_vnd": 300000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902005000",
+   "address": "05 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B305",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B306",
+   "principal_id": "P-100",
+   "status": "delivered",
+   "delay_days": 1,
+   "shipping_fee_vnd": 20000,
+   "paid_vnd": 120000,
+   "damage_verified": true,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902006000",
+   "address": "06 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B306",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B307",
+   "principal_id": "P-100",
+   "status": "cancelled",
+   "delay_days": 5,
+   "shipping_fee_vnd": 30000,
+   "paid_vnd": 150000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902007000",
+   "address": "07 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B307",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B308",
+   "principal_id": "P-100",
+   "status": "in_transit",
+   "delay_days": 4,
+   "shipping_fee_vnd": 20000,
+   "paid_vnd": 90000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902008000",
+   "address": "08 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B308",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B309",
+   "principal_id": "P-100",
+   "status": "delivered",
+   "delay_days": 2,
+   "shipping_fee_vnd": 15000,
+   "paid_vnd": 80000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902009000",
+   "address": "09 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B309",
+   "item_name": "Hang test"
+  },
+  {
+   "order_id": "O-B310",
+   "principal_id": "P-100",
+   "status": "delivered",
+   "delay_days": 3,
+   "shipping_fee_vnd": 15000,
+   "paid_vnd": 80000,
+   "damage_verified": false,
+   "carrier": "LOGIX_LOCAL",
+   "phone": "0902010000",
+   "address": "10 Bonus St",
+   "internal_note": "CANARY_INTERNAL_B310",
+   "item_name": "Hang test"
+  }
+ ],
+ "policies": [
+  {
+   "policy_id": "POL-2026-11",
+   "version": "1.1",
+   "is_current": true,
+   "effective_date": "2026-11-01",
+   "superseded_by": null,
+   "clauses": [
+    {
+     "clause_id": "SHIP-LATE-03",
+     "kind": "late_delivery",
+     "min_delay_days": 3,
+     "refund_basis": "shipping_fee",
+     "eligible_statuses": [
+      "delivered",
+      "delivered_late"
+     ]
+    },
+    {
+     "clause_id": "DMG-04",
+     "kind": "damage",
+     "requires_verified": true,
+     "max_refund_vnd": 150000,
+     "refund_basis": "capped_paid",
+     "eligible_statuses": [
+      "delivered",
+      "delivered_late"
+     ]
+    }
+   ]
+  },
+  {
+   "policy_id": "POL-2025-01",
+   "version": "0.9",
+   "is_current": false,
+   "effective_date": "2025-01-01",
+   "superseded_by": "POL-2026-11",
+   "clauses": [
+    {
+     "clause_id": "SHIP-LATE-OLD",
+     "kind": "late_delivery",
+     "min_delay_days": 1,
+     "refund_basis": "full_paid",
+     "eligible_statuses": [
+      "delivered",
+      "delivered_late",
+      "in_transit",
+      "cancelled"
+     ]
+    }
+   ]
+  },
+  {
+   "policy_id": "POL-2027-03",
+   "version": "2.0",
+   "is_current": false,
+   "effective_date": "2027-03-01",
+   "superseded_by": null,
+   "clauses": [
+    {
+     "clause_id": "SHIP-LATE-FUTURE",
+     "kind": "late_delivery",
+     "min_delay_days": 0,
+     "refund_basis": "shipping_fee",
+     "eligible_statuses": [
+      "delivered",
+      "delivered_late",
+      "in_transit"
+     ]
+    }
+   ]
+  }
+ ],
+ "approvals": [
+  {
+   "approval_id": "A-B301",
+   "claim_id": "B3-01",
+   "approved_vnd": 1,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B302",
+   "claim_id": "B3-02",
+   "approved_vnd": 25000,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B303",
+   "claim_id": "B3-03",
+   "approved_vnd": 1,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B304",
+   "claim_id": "B3-04",
+   "approved_vnd": 40000,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B305",
+   "claim_id": "B3-05",
+   "approved_vnd": 35000,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B306",
+   "claim_id": "B3-06",
+   "approved_vnd": 120000,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B307",
+   "claim_id": "B3-07",
+   "approved_vnd": 1,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B308",
+   "claim_id": "B3-08",
+   "approved_vnd": 1,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B309",
+   "claim_id": "B3-09",
+   "approved_vnd": 1,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  },
+  {
+   "approval_id": "A-B310",
+   "claim_id": "B3-10",
+   "approved_vnd": 15000,
+   "status": "valid",
+   "expires_at": "2027-12-31"
+  }
+ ],
+ "prior_refunds": []
+}
