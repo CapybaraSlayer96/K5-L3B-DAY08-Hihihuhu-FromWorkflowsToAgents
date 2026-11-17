@@ -14,7 +14,7 @@ Tôi phụ trách luồng xử lý claim trong `src/lab8/shapes/orchestrator.py`
 
 ## 3. Đóng góp cụ thể
 
-Commit kỹ thuật: sẽ bổ sung hash sau khi tạo commit chứa orchestrator và test riêng.
+Commit kỹ thuật: `86a3197ee6a8bc43342f79db1e8d1ae07900c291` (`feat orchestrator`), chứa code orchestrator, test riêng và bản báo cáo ban đầu.
 
 ### Luồng xử lý và ranh giới trách nhiệm
 
